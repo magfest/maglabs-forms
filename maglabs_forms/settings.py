@@ -66,6 +66,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maglabs_forms.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -125,7 +130,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'maglabs_forms.log',
             'formatter': 'verbose'
@@ -135,7 +140,7 @@ LOGGING = {
         'django': {
             'handlers':['file'],
             'propagate': True,
-            'level':'INFO',
+            'level':'DEBUG',
         },
     }
 }
