@@ -15,6 +15,27 @@ DATABASES = {
     }
 }
 
+AUTH_LDAP_SERVER_URI = "ldaps://ldap.example.com"
+AUTH_LDAP_START_TLS = False
+
+# AUTH_LDAP_BIND_DN = "uid=maglabs-forms,cn=sysaccounts,cn=etc,dc=magfe,dc=st"
+# AUTH_LDAP_BIND_PASSWORD = "mypassword"
+AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,cn=users,cn=accounts,dc=magfe,dc=st"
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch("cn=users,cn=accounts,dc=magfe,dc=st",
+    ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail"
+}
+
+logger = logging.getLogger('django_auth_ldap')
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
+
+
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 STATIC_URL = '/static/'
 
