@@ -45,7 +45,7 @@ AUTH_LDAP_USER_FLAGS_BY_GROUP = {
     "is_superuser": "cn=maglabs-research-team,cn=groups,cn=accounts,dc=magfe,dc=st"
 }
 
-
+AUTH_LDAP_FIND_GROUP_PERMS = True
 
 logger = logging.getLogger('django_auth_ldap')
 logger.addHandler(logging.StreamHandler())
