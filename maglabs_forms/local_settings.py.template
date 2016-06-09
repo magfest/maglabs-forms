@@ -35,6 +35,18 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "email": "mail"
 }
 
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("cn=groups,cn=accounts,dc=magfe,dc=st",
+    ldap.SCOPE_SUBTREE, "(objectClass=groupOfNames)"
+)
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType()
+
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    "is_staff": "cn=maglabs-forms_admin,cn=groups,cn=accounts,dc=magfe,dc=st",
+    "is_superuser": "cn=maglabs-research-team,cn=groups,cn=accounts,dc=magfe,dc=st"
+}
+
+
+
 logger = logging.getLogger('django_auth_ldap')
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)
